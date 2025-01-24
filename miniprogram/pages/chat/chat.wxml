@@ -1,0 +1,22 @@
+<view class="container">
+  <!-- 聊天记录 -->
+  <scroll-view scroll-y class="chat-window">
+    <block wx:for="{{messages}}" wx:key="id">
+      <view class="message {{item.sender === 'user' ? 'message-right' : 'message-left'}}">
+        <text class="bubble">{{item.message}}</text>
+        <text class="time">{{item.time}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 输入框 -->
+  <view class="input-area">
+    <input 
+      class="input-box" 
+      placeholder="请输入消息..." 
+      bindinput="handleInput" 
+      value="{{inputValue}}" 
+    />
+    <button class="send-button" bindtap="sendMessage">发送</button>
+  </view>
+</view>

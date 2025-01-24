@@ -1,0 +1,29 @@
+.container {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.btn-register {
+  background-color: #007aff;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="title">用户注册</view>
+  <form bindsubmit="formSubmit">
+    <view class="input-group">
+      <input type="text" placeholder="请输入账号" name="username" class="input" />
+    </view>
+    <view class="input-group">
+      <input type="password" placeholder="请输入密码" name="password" class="input" />
+    </view>
+    <view class="input-group">
+      <input type="password" placeholder="请再次输入密码" name="confirmPassword" class="input" />
+    </view>
+    <view class="input-group">
+      <radio-group name="gender">
+        <label>
+          <radio value="male" /> 男
+        </label>
+        <label>
+          <radio value="female" style="margin-left: 20px;" /> 女
+        </label>
+      </radio-group>
+    </view>
+    <view class="input-group">
+      <input type="number" placeholder="请输入电话" name="phone" class="input" />
+    </view>
+    <view class="input-group">
+      <input type="email" placeholder="请输入邮箱" name="email" class="input" />
+    </view>
+    <view class="input-group">
+      <input type="text" placeholder="请输入家庭住址" name="address" class="input" />
+    </view>
+    <button formType="submit" class="btn-register">注册</button>
+  </form>
+</view>

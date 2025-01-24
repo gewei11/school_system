@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  /* 聊天记录窗口 */
+  .chat-window {
+    flex: 1;
+    padding: 10rpx;
+    background-color: #e5e5e5;
+    overflow-y: scroll;
+  }
+  
+  .message {
+    display: flex;
+    flex-direction: column;
+    margin: 10rpx 0;
+  }
+  
+  .message-left {
+    align-items: flex-start;
+  }
+  
+  .message-right {
+    align-items: flex-end;
+  }
+  
+  .bubble {
+    max-width: 70%;
+    padding: 15rpx;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    line-height: 1.5;
+  }
+  
+  .message-left .bubble {
+    background-color: #fff;
+    border: 1rpx solid #ddd;
+  }
+  
+  .message-right .bubble {
+    background-color: #9feeff;
+  }
+  
+  .time {
+    margin-top: 5rpx;
+    font-size: 22rpx;
+    color: #888;
+  }
+  
+  /* 输入框 */
+  .input-area {
+    display: flex;
+    padding: 10rpx;
+    background-color: #fff;
+    border-top: 1rpx solid #ddd;
+  }
+  
+  .input-box {
+    flex: 1;
+    height: 60rpx;
+    font-size: 28rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 10rpx;
+    padding: 0 20rpx;
+  }
+  
+  .send-button {
+    width: 120rpx;
+    height: 60rpx;
+    margin-left: 10rpx;
+    background-color: #07c160;
+    color: #fff;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 10rpx;
+  }
+  

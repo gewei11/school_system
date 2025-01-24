@@ -1,0 +1,37 @@
+<view class="container">
+  <!-- 顶部标签切换 -->
+  <view class="tabs">
+    <view 
+      class="tab {{currentTab === 'mutual' ? 'active' : ''}}" 
+      data-tab="mutual" 
+      bindtap="switchTab">
+      互关私信
+    </view>
+    <view 
+      class="tab {{currentTab === 'fans' ? 'active' : ''}}" 
+      data-tab="fans" 
+      bindtap="switchTab">
+      粉丝来信
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <view class="messages">
+    <block wx:for="{{messages}}" wx:key="id">
+      <view 
+        class="message" 
+        data-chat-id="{{item.id}}" 
+        bindtap="goToChat">
+        <view class="message-info">
+          <view class="username">{{item.username}}</view>
+          <view class="last-message">{{item.lastMessage}}</view>
+        </view>
+        <view class="message-time">{{item.lastTime}}</view>
+      </view>
+    </block>
+    <view wx:if="{{messages.length === 0}}" class="empty">
+      <image src="/assets/empty.png" class="empty-img" />
+      <text class="empty-text">没有收到任何消息</text>
+    </view>
+  </view>
+</view>

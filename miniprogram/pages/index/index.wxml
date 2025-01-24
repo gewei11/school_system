@@ -1,0 +1,47 @@
+<view class="container">
+  <!-- 一级标题 -->
+  <view class="theme-list">
+    <block wx:for="{{themes}}" wx:key="id">
+      <button 
+        bindtap="changeTheme" 
+        data-theme="{{item.title}}" 
+        data-index="{{index}}" 
+        class="{{index === selectedThemeIndex ? 'selected' : ''}}">
+        {{item.title}}
+      </button>
+    </block>
+  </view>
+  
+  <!-- 分隔线 -->
+  <view class="separator"></view>
+
+  <!-- 二级标题 -->
+  <view class="category-list">
+    <block wx:for="{{categories}}" wx:key="id">
+      <button 
+        bindtap="changeCategory" 
+        data-category="{{item.title}}" 
+        data-index="{{index}}" 
+        class="{{index === selectedCategoryIndex ? 'selected' : ''}}">
+        {{item.title}}
+      </button>
+    </block>
+  </view>
+
+  <view class="post-list">
+    <!-- 无数据提示 -->
+    <view wx:if="{{posts.length === 0}}" class="no-data-message">
+      暂无相关数据
+    </view>
+    <!-- 数据展示 -->
+    <block wx:if="{{posts.length > 0}}" wx:for="{{posts}}" wx:key="id">
+      <view class="post-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <text class="username">{{item.username}}</text>
+        <text class="content">\n{{item.content}}</text>
+        <text class="meta">\n{{item.comments.length}} 评论 | {{item.views}} 浏览</text>
+        <text class="timestamp">\n发布时间: {{item.createdAt}}</text>
+      </view>
+    </block>
+  </view>
+
+</view>

@@ -1,0 +1,59 @@
+<view class="container">
+  <!-- 文章详情 -->
+  <view class="post-detail">
+    <view class="post-header">
+      <image class="avatar" src="{{post.avatar}}" />
+      <view class="header-info">
+        <text class="username">{{post.username}}</text>
+        <text class="timestamp">\n{{post.createdAt}}</text>
+      </view>
+    </view>
+    <view class="post-content">
+      <text>{{post.content}}</text>
+    </view>
+    <view class="post-stats">
+      <text>{{post.comments.length}} 评论 | {{post.views}} 浏览</text>
+    </view>
+    <view class="post-images">
+      <block wx:for="{{post.images}}" wx:key="index">
+        <image class="post-image" src="{{item}}" />
+      </block>
+    </view>
+    <!-- 点赞功能 -->
+    <view class="post-likes">
+      <button class="like-button" bindtap="toggleLike">{{post.liked ? '取消点赞' : '点赞'}}</button>
+      <text class="like-count">{{post.likes}} 人喜欢</text>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="comments-section">
+    <text class="section-title">用户评论</text>
+    <block wx:for="{{comments}}" wx:key="index">
+      <view class="comment-item">
+        <image class="comment-avatar" src="{{item.avatar}}" />
+        <view class="comment-info">
+          <text class="comment-username">{{item.username}}</text>
+          <text class="comment-content">{{item.comment}}</text>
+          <text class="comment-time">{{item.time}}</text>
+        </view>
+        <!-- 大拇指点赞按钮 -->
+        <view class="like-thumb">
+          <button class="thumb-button" bindtap="likeComment" data-index="{{index}}">
+            👍
+          </button>
+          <text class="thumb-count">{{item.likes}} 人点赞</text>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{comments.length === 0}}" class="no-comments">
+      <text>暂无评论</text>
+    </view>
+  </view>
+
+  <!-- 添加评论文本框 -->
+  <view class="add-comment">
+    <textarea class="comment-input" placeholder="写下你的评论..." bindinput="onCommentInput" value="{{newComment}}" />
+    <button class="comment-submit" bindtap="submitComment">提交评论</button>
+  </view>
+</view>
