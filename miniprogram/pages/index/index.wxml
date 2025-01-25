@@ -1,47 +1,46 @@
 <view class="container">
-  <!-- 一级标题 -->
-  <view class="theme-list">
-    <block wx:for="{{themes}}" wx:key="id">
-      <button 
-        bindtap="changeTheme" 
-        data-theme="{{item.title}}" 
-        data-index="{{index}}" 
-        class="{{index === selectedThemeIndex ? 'selected' : ''}}">
-        {{item.title}}
-      </button>
-    </block>
-  </view>
-  
-  <!-- 分隔线 -->
-  <view class="separator"></view>
-
-  <!-- 二级标题 -->
-  <view class="category-list">
-    <block wx:for="{{categories}}" wx:key="id">
-      <button 
-        bindtap="changeCategory" 
-        data-category="{{item.title}}" 
-        data-index="{{index}}" 
-        class="{{index === selectedCategoryIndex ? 'selected' : ''}}">
-        {{item.title}}
-      </button>
-    </block>
-  </view>
-
-  <view class="post-list">
-    <!-- 无数据提示 -->
-    <view wx:if="{{posts.length === 0}}" class="no-data-message">
-      暂无相关数据
+  <!-- 一级分类导航 -->
+  <scroll-view class="circle-themes" scroll-x>
+    <view
+      wx:for="{{circleThemes}}"
+      wx:key="id"
+      data-theme="{{item.title}}"
+      bindtap="switchTheme"
+      class="theme {{item.title === activeTheme ? 'active' : ''}}" 
+    >
+      {{item.title}}
     </view>
-    <!-- 数据展示 -->
-    <block wx:if="{{posts.length > 0}}" wx:for="{{posts}}" wx:key="id">
-      <view class="post-item" bindtap="goToDetail" data-id="{{item.id}}">
-        <text class="username">{{item.username}}</text>
-        <text class="content">\n{{item.content}}</text>
-        <text class="meta">\n{{item.comments.length}} 评论 | {{item.views}} 浏览</text>
-        <text class="timestamp">\n发布时间: {{item.createdAt}}</text>
-      </view>
-    </block>
-  </view>
+  </scroll-view>
 
+  <!-- 二级分类导航 -->
+  <scroll-view class="dynamic-categories" scroll-x>
+    <view
+      wx:for="{{dynamicCategories}}"
+      wx:key="id"
+      data-category="{{item.title}}"
+      bindtap="switchCategory"
+      class="category {{item.title === activeCategory ? 'active' : ''}}" 
+    >
+      {{item.title}}
+    </view>
+  </scroll-view>
+
+  <!-- 详情数据展示 -->
+  <view class="details">
+    <view wx:if="{{details.length > 0}}" wx:for="{{details}}" wx:key="id" class="detail-item" bindtap="goToDetail" data-id="{{item.id}}">
+      <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+      <view class="content">
+        <text class="username">{{item.username}}</text>
+        <text class="content-text">{{item.content}}</text>
+        <view class="meta">
+          <text>浏览: {{item.views}}</text>
+          <text>点赞: {{item.likes}}</text>
+          <text>{{item.createdAt}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- <view wx:else class="no-data-message">
+      暂无相关数据
+    </view> -->
+  </view>
 </view>

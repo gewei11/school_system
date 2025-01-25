@@ -1,58 +1,83 @@
-// 引入模拟数据
-import { circleThemes, dynamicCategories, mockDetails } from "../../utils/mockData";
-
 Page({
   data: {
-    themes: [], // 一级标题
-    categories: [], // 当前一级标题对应的二级标题
-    posts: [], // 当前二级标题对应的数据
-    currentTheme: "", // 当前选中的一级标题
-    currentCategory: "", // 当前选中的二级标题
-    selectedThemeIndex: 0, // 当前选中一级标题的索引
-    selectedCategoryIndex: 0, // 当前选中二级标题的索引
+    circleThemes: [], // 一级分类数据
+    dynamicCategories: [], // 当前一级标签选中的二级分类数据
+    details: [], // 帖子详情数据
+    activeTheme: '', // 当前选中的一级标签
+    activeCategory: '', // 当前选中的二级标签
   },
 
   onLoad() {
-    // 默认加载一级和二级标题及对应数据
-    const defaultTheme = "圈子动态"; // 默认一级标题
-    const defaultCategory = "树洞"; // 默认二级标题
-    this.setData({
-      themes: circleThemes,
-      categories: dynamicCategories[defaultTheme] || [],
-      posts: mockDetails[defaultCategory] || [],
-      currentTheme: defaultTheme,
-      currentCategory: defaultCategory,
+    this.fetchCircleThemes(); // 获取一级分类数据
+  },
+
+  // 获取一级分类数据
+  fetchCircleThemes() {
+    wx.request({
+      url: 'http://localhost:3000/api/circleThemes',
+      success: (res) => {
+        if (res.data) {
+          this.setData({
+            circleThemes: res.data,
+            activeTheme: res.data[0]?.title, // 默认选择第一个一级标签
+          });
+          this.fetchDynamicCategories(res.data[0]?.title); // 根据默认的一级标签获取二级分类
+        }
+      },
     });
   },
 
-  // 切换一级标题
-  changeTheme(e) {
+  // 根据一级标签获取二级分类
+  fetchDynamicCategories(theme) {
+    wx.request({
+      url: 'http://localhost:3000/api/dynamicCategories',
+      data: { theme },
+      success: (res) => {
+        if (res.data) {
+          this.setData({
+            dynamicCategories: res.data,
+            activeCategory: res.data[0]?.title, // 默认选择第一个二级标签
+          });
+          this.fetchDetails(res.data[0]?.title); // 根据默认的二级标签获取帖子详情
+        }
+      },
+    });
+  },
+
+  // 根据二级分类获取详情数据
+  fetchDetails(category) {
+    wx.request({
+      url: 'http://localhost:3000/api/mockDetails',
+      data: { category },
+      success: (res) => {
+        if (res.data) {
+          this.setData({
+            details: res.data,
+          });
+        }
+      },
+    });
+  },
+
+  // 切换一级分类
+  switchTheme(e) {
     const theme = e.currentTarget.dataset.theme;
-    const themeIndex = e.currentTarget.dataset.index;
-    const categories = dynamicCategories[theme] || [];
-    const firstCategory = categories.length > 0 ? categories[0].title : "";
     this.setData({
-      currentTheme: theme,
-      selectedThemeIndex: themeIndex,
-      categories: categories,
-      currentCategory: firstCategory,
-      posts: mockDetails[firstCategory] || [], // 更新帖子
-      selectedCategoryIndex: 0, // 重置二级标题选中状态
+      activeTheme: theme,
     });
+    this.fetchDynamicCategories(theme); // 获取对应的二级分类
   },
 
-  // 切换二级标题
-  changeCategory(e) {
+  // 切换二级分类
+  switchCategory(e) {
     const category = e.currentTarget.dataset.category;
-    const categoryIndex = e.currentTarget.dataset.index;
     this.setData({
-      currentCategory: category,
-      selectedCategoryIndex: categoryIndex,
-      posts: mockDetails[category] || [], // 更新帖子
+      activeCategory: category,
     });
+    this.fetchDetails(category); // 获取对应的详情数据
   },
 
-  // 跳转到帖子详情
+  // 跳转到帖子详情页面
   goToDetail(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
