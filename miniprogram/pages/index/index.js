@@ -1,10 +1,10 @@
 Page({
   data: {
     circleThemes: [], // 一级分类数据
-    dynamicCategories: [], // 当前一级标签选中的二级分类数据
+    dynamicCategories: [], // 当前一级分类选中的二级分类数据
     details: [], // 帖子详情数据
-    activeTheme: '', // 当前选中的一级标签
-    activeCategory: '', // 当前选中的二级标签
+    activeTheme: '', // 当前选中的一级分类
+    activeCategory: '', // 当前选中的二级分类
   },
 
   onLoad() {
@@ -19,15 +19,15 @@ Page({
         if (res.data) {
           this.setData({
             circleThemes: res.data,
-            activeTheme: res.data[0]?.title, // 默认选择第一个一级标签
+            activeTheme: res.data[0]?.title, // 默认选择第一个一级分类
           });
-          this.fetchDynamicCategories(res.data[0]?.title); // 根据默认的一级标签获取二级分类
+          this.fetchDynamicCategories(res.data[0]?.title); // 获取默认一级分类的二级分类
         }
       },
     });
   },
 
-  // 根据一级标签获取二级分类
+  // 根据一级分类获取二级分类
   fetchDynamicCategories(theme) {
     wx.request({
       url: 'http://localhost:3000/api/dynamicCategories',
@@ -36,9 +36,9 @@ Page({
         if (res.data) {
           this.setData({
             dynamicCategories: res.data,
-            activeCategory: res.data[0]?.title, // 默认选择第一个二级标签
+            activeCategory: res.data[0]?.title, // 默认选择第一个二级分类
           });
-          this.fetchDetails(res.data[0]?.title); // 根据默认的二级标签获取帖子详情
+          this.fetchDetails(res.data[0]?.title); // 获取默认二级分类的详情数据
         }
       },
     });

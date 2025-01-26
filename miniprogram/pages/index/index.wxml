@@ -6,11 +6,14 @@
       wx:key="id"
       data-theme="{{item.title}}"
       bindtap="switchTheme"
-      class="theme {{item.title === activeTheme ? 'active' : ''}}" 
+      class="theme {{item.title === activeTheme ? 'active' : ''}}"
     >
       {{item.title}}
     </view>
   </scroll-view>
+
+  <!-- 空白区域 -->
+  <view class="separator"></view>
 
   <!-- 二级分类导航 -->
   <scroll-view class="dynamic-categories" scroll-x>
@@ -19,7 +22,7 @@
       wx:key="id"
       data-category="{{item.title}}"
       bindtap="switchCategory"
-      class="category {{item.title === activeCategory ? 'active' : ''}}" 
+      class="category {{item.title === activeCategory ? 'active' : ''}}"
     >
       {{item.title}}
     </view>
@@ -27,7 +30,17 @@
 
   <!-- 详情数据展示 -->
   <view class="details">
-    <view wx:if="{{details.length > 0}}" wx:for="{{details}}" wx:key="id" class="detail-item" bindtap="goToDetail" data-id="{{item.id}}">
+    <view wx:if="{{details.length <= 0}}" class="no-data-message">
+      暂无相关数据
+    </view>
+    <view
+      wx:if="{{details.length > 0}}"
+      wx:for="{{details}}"
+      wx:key="id"
+      class="detail-item"
+      bindtap="goToDetail"
+      data-id="{{item.id}}"
+    >
       <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
       <view class="content">
         <text class="username">{{item.username}}</text>
@@ -39,8 +52,5 @@
         </view>
       </view>
     </view>
-    <!-- <view wx:else class="no-data-message">
-      暂无相关数据
-    </view> -->
   </view>
 </view>
