@@ -53,7 +53,7 @@
     ],
     "求助": [
       {
-        "id": 2,
+        "id": 3,
         "avatar": "https://img0.baidu.com/it/u=2653686457,2201625642&fm=253&fmt=auto&app=138&f=JPEG?w=665&h=665",
         "username": "小龙女",
         "content": "爱书的小龙女出一本九成新的考研真题书，价格面议！————圈子动态-求助",
@@ -78,7 +78,7 @@
         "likes": 26
       },
       {
-        "id": 2,
+        "id": 4,
         "avatar": "https://img2.baidu.com/it/u=3928639842,338040314&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800",
         "username": "郭靖",
         "content": "热心的郭靖低价出售小说《三体》系列，有需要的私聊！！————圈子动态-求助",
@@ -105,7 +105,7 @@
     ],
     "书籍": [
       {
-        "id": 7,
+        "id": 5,
         "avatar": "https://img0.baidu.com/it/u=2653686457,2201625642&fm=253&fmt=auto&app=138&f=JPEG?w=665&h=665",
         "username": "小龙女",
         "content": "爱书的小龙女出一本九成新的考研真题书，价格面议！————二手集市-书籍",
@@ -130,7 +130,7 @@
         "likes": 55
       },
       {
-        "id": 8,
+        "id": 6,
         "avatar": "https://img2.baidu.com/it/u=3928639842,338040314&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800",
         "username": "郭靖",
         "content": "热心的郭靖低价出售小说《三体》系列，有需要的私聊！！————二手集市-书籍",

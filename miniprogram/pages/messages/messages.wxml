@@ -24,9 +24,12 @@
         bindtap="goToChat">
         <view class="message-info">
           <view class="username">{{item.username}}</view>
-          <view class="last-message">{{item.lastMessage}}</view>
+          <view class="last-message">
+            <!-- 显示最后一条消息内容 -->
+            {{item.chat.message || '暂无消息'}}
+          </view>
         </view>
-        <view class="message-time">{{item.lastTime}}</view>
+        <view class="message-time">{{item.chat.time || '暂无时间'}}</view>
       </view>
     </block>
     <view wx:if="{{messages.length === 0}}" class="empty">

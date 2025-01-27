@@ -34,7 +34,7 @@
         <image class="comment-avatar" src="{{item.avatar}}" />
         <view class="comment-info">
           <text class="comment-username">{{item.username}}</text>
-          <text class="comment-content">{{item.comment}}</text>
+          <text class="comment-content">\n{{item.comment}}</text>
           <text class="comment-time">{{item.time}}</text>
         </view>
         <!-- 大拇指点赞按钮 -->

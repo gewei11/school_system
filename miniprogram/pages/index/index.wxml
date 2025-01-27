@@ -44,7 +44,7 @@
       <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
       <view class="content">
         <text class="username">{{item.username}}</text>
-        <text class="content-text">{{item.content}}</text>
+        <text class="content-text">\n{{item.content}}</text>
         <view class="meta">
           <text>浏览: {{item.views}}</text>
           <text>点赞: {{item.likes}}</text>

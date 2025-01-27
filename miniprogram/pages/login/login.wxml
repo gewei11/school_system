@@ -1,15 +1,2 @@
-<view class="container">
-  <view class="title">登录/注册</view>
-  <form bindsubmit="formSubmit">
-    <view class="input-group">
-      <input type="text" placeholder="请输入手机号" name="phone" class="input" />
-    </view>
-    <view class="input-group">
-      <input type="password" placeholder="请输入密码" name="password" class="input" />
-    </view>
-    <view class="button-group">
-      <button formType="submit" class="login-btn">登录</button>
-      <button bindtap="register" class="register-btn">注册</button>
-    </view>
-  </form>
-</view>
+<!--pages/login/login.wxml-->
+<text>pages/login/login.wxml</text>
