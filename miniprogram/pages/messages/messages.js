@@ -18,7 +18,7 @@ Page({
         if (res.data.code === 200) {
           this.setData({ messages: res.data.data });
           // 打印
-          console.log(res.data.data[0].chat);
+          console.log(res.data.data);
         } else {
           wx.showToast({ title: '消息加载失败', icon: 'none' });
         }
