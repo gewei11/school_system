@@ -8,7 +8,7 @@ git clone https://github.com/gewei11/school_system.git
 2. 在微信开发者工具中打开项目文件夹  
 3. 下载环境  
 npm install -i  
-4. 启动node.js虚拟后台  
+4. 启动node.js虚拟后端  
 cd .\miniprogram\utils\  
 node server.js  
 5. 在微信开发者工具中预览即可  

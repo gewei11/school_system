@@ -26,14 +26,14 @@
           <view class="username">{{item.username}}</view>
           <view class="last-message">
             <!-- 显示最后一条消息内容 -->
-            {{item.chat.message || '暂无消息'}}
+            {{item[0].message || '暂无消息'}}
           </view>
         </view>
         <view class="message-time">{{item.chat.time || '暂无时间'}}</view>
       </view>
     </block>
     <view wx:if="{{messages.length === 0}}" class="empty">
-      <image src="/assets/empty.png" class="empty-img" />
+      <image src="miniprogram\images\个人.png" class="empty-img" />
       <text class="empty-text">没有收到任何消息</text>
     </view>
   </view>
