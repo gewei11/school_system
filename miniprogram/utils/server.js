@@ -100,7 +100,7 @@ const chatMessages = {
     { id: 2, sender: "other", message: "好的，几点？", time: "14:25" },
   ],
 };
-
+  
 // 允许跨域
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
