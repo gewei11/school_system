@@ -170,7 +170,7 @@ app.get("/api/mockDetail", (req, res) => {
 })
 
 // 新增内容
-app.post("/api/mockDetails", (req, res) => {
+app.post("/api/add/mockDetails", (req, res) => {
   const { category, post } = req.body;
   if (!category || !post) {
     return sendResponse(res, 400, "缺少必要参数");
@@ -189,7 +189,7 @@ app.post("/api/mockDetails", (req, res) => {
 });
 
 // 更新内容
-app.put("/api/mockDetails", (req, res) => {
+app.put("/api/put/mockDetails", (req, res) => {
   const { category, id, updatedPost } = req.body;
   if (!category || !id || !updatedPost) {
     return sendResponse(res, 400, "缺少必要参数");
@@ -213,7 +213,7 @@ app.put("/api/mockDetails", (req, res) => {
 });
 
 // 删除内容
-app.delete("/api/mockDetails", (req, res) => {
+app.delete("/api/del/mockDetails", (req, res) => {
   const { category, id } = req.body;
   if (!category || !id) {
     return sendResponse(res, 400, "缺少必要参数");

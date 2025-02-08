@@ -1,99 +1,48 @@
-/* 一级和二级分类容器 */
-.categories-container {
-  display: flex; /* 横向排列 */
-  overflow-x: scroll;
-  white-space: nowrap;
-  background-color: #f5f5f5; /* 背景色 */
-  padding: 10rpx 0;
+.container {
+  padding: 20rpx;
 }
 
-/* 一级分类样式 */
-.theme {
-  flex-shrink: 0; /* 禁止缩小 */
-  padding: 10rpx 20rpx;
-  margin-right: 10rpx;
-  border-radius: 50rpx;
-  background-color: #f8c040; /* 黄色背景 */
-  color: white;
-  text-align: center;
-  font-size: 32rpx; /* 字体大小 */
-}
-
-.theme.active {
-  background-color: #d48806; /* 激活态背景色 */
-}
-
-/* 空白区域样式 */
-.separator {
-  height: 20rpx; /* 空白区域高度 */
-  background-color: #f5f5f5; /* 和背景色一致 */
-}
-
-/* 二级分类样式 */
-.category {
-  flex-shrink: 0; /* 禁止缩小 */
-  padding: 10rpx 20rpx;
-  margin-right: 10rpx;
-  border-radius: 50rpx;
-  background-color: #409eff; /* 蓝色背景 */
-  color: white;
-  text-align: center;
-  font-size: 28rpx; /* 字体大小 */
-}
-
-.category.active {
-  background-color: #236ab9; /* 激活态背景色 */
-}
-
-.horizontal-navigation {
+.theme-list, .category-list {
   display: flex;
-  flex-direction: row;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
 }
 
-.circle-themes, .dynamic-categories {
-  flex: 1; /* 使两个导航栏平均分配空间 */
-  white-space: nowrap; /* 防止内容换行 */
+button {
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
 }
 
-.theme, .category {
-  display: inline-block; /* 使导航项横向排列 */
-  /* 其他样式保持不变 */
+button.active {
+  background-color: #007aff;
+  color: white;
 }
 
-/* 详情项样式 */
-.details {
-  padding: 15px;
-  background-color: white;
+.post-list .add-btn {
+  background-color: #4caf50;
+  color: white;
+  margin-bottom: 20rpx;
 }
 
-.detail-item {
+.post-item {
   display: flex;
-  padding: 15px;
+  align-items: center;
+  padding: 20rpx;
   border-bottom: 1px solid #eee;
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
-  margin-right: 15px;
+  margin-right: 20rpx;
 }
 
 .content {
   flex: 1;
-}
-
-.username {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.content-text {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.meta text {
-  font-size: 12px;
-  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5rpx;
 }

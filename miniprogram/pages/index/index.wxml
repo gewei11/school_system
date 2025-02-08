@@ -1,56 +1,30 @@
 <view class="container">
-  <!-- 一级分类导航 -->
-  <scroll-view class="circle-themes" scroll-x>
-    <view
-      wx:for="{{circleThemes}}"
-      wx:key="id"
-      data-theme="{{item.title}}"
-      bindtap="switchTheme"
-      class="theme {{item.title === activeTheme ? 'active' : ''}}"
-    >
+  <view class="theme-list">
+    <button wx:for="{{circleThemes}}" wx:key="title" data-theme="{{item.title}}" bindtap="switchTheme"
+      class="{{activeTheme === item.title ? 'active' : ''}}">
       {{item.title}}
-    </view>
-  </scroll-view>
+    </button>
+  </view>
 
-  <!-- 空白区域 -->
-  <view class="separator"></view>
-
-  <!-- 二级分类导航 -->
-  <scroll-view class="dynamic-categories" scroll-x>
-    <view
-      wx:for="{{dynamicCategories}}"
-      wx:key="id"
-      data-category="{{item.title}}"
-      bindtap="switchCategory"
-      class="category {{item.title === activeCategory ? 'active' : ''}}"
-    >
+  <view class="category-list">
+    <button wx:for="{{dynamicCategories}}" wx:key="title" data-category="{{item.title}}" bindtap="switchCategory"
+      class="{{activeCategory === item.title ? 'active' : ''}}">
       {{item.title}}
-    </view>
-  </scroll-view>
+    </button>
+  </view>
 
-  <!-- 详情数据展示 -->
-  <view class="details">
-    <view wx:if="{{details.length <= 0}}" class="no-data-message">
-      暂无相关数据
-    </view>
-    <view
-      wx:if="{{details.length > 0}}"
-      wx:for="{{details}}"
-      wx:key="id"
-      class="detail-item"
-      bindtap="goToDetail"
-      data-id="{{item.id}}"
-    >
-      <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
-      <view class="content">
-        <text class="username">{{item.username}}</text>
-        <text class="content-text">\n{{item.content}}</text>
-        <view class="meta">
-          <text>浏览: {{item.views}}</text>
-          <text>点赞: {{item.likes}}</text>
-          <text>{{item.createdAt}}</text>
-        </view>
+  <view class="post-list">
+    <button class="add-btn" bindtap="addPost">新增帖子</button>
+
+    <view wx:for="{{details}}" wx:key="id" class="post-item">
+      <image src="{{item.avatar}}" class="avatar" />
+      <view class="content" bindtap="goToDetail" data-id="{{item.id}}">
+        <text>{{item.username}}</text>
+        <text>{{item.content}}</text>
+        <text>浏览: {{item.views}} 点赞: {{item.likes}}</text>
       </view>
+      <button data-id="{{item.id}}" bindtap="editPost">编辑</button>
+      <button data-id="{{item.id}}" bindtap="deletePost">删除</button>
     </view>
   </view>
 </view>
