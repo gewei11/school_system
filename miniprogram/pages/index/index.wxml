@@ -1,30 +1,41 @@
 <view class="container">
-  <view class="theme-list">
-    <button wx:for="{{circleThemes}}" wx:key="title" data-theme="{{item.title}}" bindtap="switchTheme"
-      class="{{activeTheme === item.title ? 'active' : ''}}">
+  <!-- 一级分类（主题） -->
+  <scroll-view scroll-x="true" class="theme-list">
+    <button wx:for="{{circleThemes}}" wx:key="title" 
+            bindtap="switchTheme" 
+            data-theme="{{item.title}}" 
+            class="{{activeTheme === item.title ? 'active' : ''}}">
       {{item.title}}
     </button>
-  </view>
+  </scroll-view>
 
-  <view class="category-list">
-    <button wx:for="{{dynamicCategories}}" wx:key="title" data-category="{{item.title}}" bindtap="switchCategory"
-      class="{{activeCategory === item.title ? 'active' : ''}}">
+  <!-- 二级分类（动态分类） -->
+  <scroll-view scroll-x="true" class="category-list">
+    <button wx:for="{{dynamicCategories}}" wx:key="title" 
+            bindtap="switchCategory" 
+            data-category="{{item.title}}" 
+            class="{{activeCategory === item.title ? 'active' : ''}}">
       {{item.title}}
     </button>
-  </view>
+  </scroll-view>
 
+  <!-- 新增帖子按钮 -->
+  <button bindtap="addPost" class="add-btn">➕ 新增帖子</button>
+
+  <!-- 帖子列表 -->
   <view class="post-list">
-    <button class="add-btn" bindtap="addPost">新增帖子</button>
-
     <view wx:for="{{details}}" wx:key="id" class="post-item">
-      <image src="{{item.avatar}}" class="avatar" />
+      <image src="{{item.avatar}}" class="avatar" mode="aspectFill"></image>
       <view class="content" bindtap="goToDetail" data-id="{{item.id}}">
-        <text>{{item.username}}</text>
-        <text>{{item.content}}</text>
-        <text>浏览: {{item.views}} 点赞: {{item.likes}}</text>
+        <text class="title">{{item.username}}</text>
+        <text class="body">{{item.content}}</text>
+        <text class="timestamp">{{item.createdAt}}</text>
       </view>
-      <button data-id="{{item.id}}" bindtap="editPost">编辑</button>
-      <button data-id="{{item.id}}" bindtap="deletePost">删除</button>
+      <!-- 编辑和删除按钮垂直排列 -->
+      <view class="action-buttons">
+        <button bindtap="editPost" data-id="{{item.id}}" class="edit-btn">编辑</button>
+        <button bindtap="deletePost" data-id="{{item.id}}" class="delete-btn">删除</button>
+      </view>
     </view>
   </view>
 </view>
