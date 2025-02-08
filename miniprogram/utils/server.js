@@ -169,6 +169,73 @@ app.get("/api/mockDetail", (req, res) => {
   sendResponse(res, 200, "请求成功", post);
 })
 
+// 新增内容
+app.post("/api/mockDetails", (req, res) => {
+  const { category, post } = req.body;
+  if (!category || !post) {
+    return sendResponse(res, 400, "缺少必要参数");
+  }
+
+  const data = readMockDetails();
+  if (!data[category]) {
+    data[category] = [];
+  }
+
+  post.id = Date.now(); // 生成唯一ID
+  data[category].push(post);
+  writeMockDetails(data);
+
+  sendResponse(res, 201, "新增成功", post);
+});
+
+// 更新内容
+app.put("/api/mockDetails", (req, res) => {
+  const { category, id, updatedPost } = req.body;
+  if (!category || !id || !updatedPost) {
+    return sendResponse(res, 400, "缺少必要参数");
+  }
+
+  const data = readMockDetails();
+  const posts = data[category];
+  if (!posts) {
+    return sendResponse(res, 404, "类别不存在");
+  }
+
+  const index = posts.findIndex((p) => p.id == id);
+  if (index === -1) {
+    return sendResponse(res, 404, "内容不存在");
+  }
+
+  data[category][index] = { ...posts[index], ...updatedPost };
+  writeMockDetails(data);
+
+  sendResponse(res, 200, "更新成功", data[category][index]);
+});
+
+// 删除内容
+app.delete("/api/mockDetails", (req, res) => {
+  const { category, id } = req.body;
+  if (!category || !id) {
+    return sendResponse(res, 400, "缺少必要参数");
+  }
+
+  const data = readMockDetails();
+  const posts = data[category];
+  if (!posts) {
+    return sendResponse(res, 404, "类别不存在");
+  }
+
+  const index = posts.findIndex((p) => p.id == id);
+  if (index === -1) {
+    return sendResponse(res, 404, "内容不存在");
+  }
+
+  const deletedPost = posts.splice(index, 1);
+  writeMockDetails(data);
+
+  sendResponse(res, 200, "删除成功", deletedPost[0]);
+});
+
 // 启动服务
 app.listen(port, () => {
   console.log(`服务器已启动：http://localhost:${port}`);
