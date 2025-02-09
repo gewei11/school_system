@@ -88,7 +88,7 @@ Page({
       fail: () => wx.showToast({ title: '添加帖子失败', icon: 'none' })
     });
   },
-
+  
   editPost(e) {
     const { id } = e.currentTarget.dataset;
     const category = this.data.activeCategory;
